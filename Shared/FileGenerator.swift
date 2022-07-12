@@ -36,7 +36,7 @@ class FileGenerator {
         for idx in 0 ..< size {
             str += String("\(idx % 10)")
             let progress = (Double(idx) * Double(100)/Double(size))
-            updateAction?(progress * 0.8)
+//            updateAction?(progress * 0.8)
         }
         
         let fileName = logsPath.appendingPathComponent(file + ".txt")

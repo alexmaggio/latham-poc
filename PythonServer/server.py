@@ -28,7 +28,7 @@ class Server():
         except AttributeError:
             name = "uploadedfile"
         #name = re.compile(b'name="uploadedfile"; filename="(.+)"').search(packet).group(1)
-        data = re.compile(b"WebKitFormBoundary((\n|.)*)Content-Type.+\n.+?\n((\n|.)*)([\-]+WebKitFormBoundary)?")
+        #data = re.compile(b"WebKitFormBoundary((\n|.)*)Content-Type.+\n.+?\n((\n|.)*)([\-]+WebKitFormBoundary)?")
         with open(name, "wb") as file:
             file.write(data.search(packet).group(2))
 

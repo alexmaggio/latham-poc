@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-//let server = "http://192.168.1.100:81"
-let server = "http://localhost:8000"
+let server = "http://192.168.1.100:81"
+//let server = "http://localhost:8000/uploadfile/"
 
 struct ContentView: View {
     @State private var downloadAmount = 0.0
@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button(action: {
-                let filePath = FileGenerator().writeDataToFile(file: UUID().uuidString, size: 1.kb) { progress in
+                let filePath = FileGenerator().writeDataToFile(file: UUID().uuidString, size: 1.gb) { progress in
                     downloadAmount = progress
                 }
                 fileToUpload = (filePath.count > 0 ? filePath : "")
@@ -42,7 +42,8 @@ struct ContentView: View {
                 print("Upload File")
                 FileUploader().uploadFile(
                     fileName: fileToUpload,
-                    to: URL(string: server)!.appendingPathComponent("/uploadfile/")) { success, data in
+                    to: URL(string: server)!) {
+                        success, data in
                         if success, let data = data {
                             print(String(data: data, encoding: .utf8)!)
                         } else {
